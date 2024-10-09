@@ -39,15 +39,13 @@ searchBtn?.addEventListener('click', (e) => {
     x[5].toLowerCase().includes(searchValue)))
 
   console.log(m);
-
   displayMovies(m, true);
 })
 
 yearUpBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   categories.value = "";
-  // ! Error: No overload matches this call
-  const m = [].concat(movies as Movies[]);
+  const m = movies.slice()
   console.log(Array.isArray(m));
   m.sort((a, b) => (+a[1]) - (+b[1]));
   displayMovies(m)
@@ -56,8 +54,7 @@ yearUpBtn?.addEventListener('click', (e) => {
 yearDownBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   categories.value = "";
-  // ! Error: No overload matches this call
-  const m = [].concat(movies as Movies[]);
+  const m = movies.slice()
   m.sort((a, b) => (+b[1]) - (+a[1]));
   displayMovies(m)
 })
@@ -65,8 +62,7 @@ yearDownBtn?.addEventListener('click', (e) => {
 ratingBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   categories.value = "";
-  // ! Error: No overload matches this call
-  const m = [].concat(movies as Movies[]);
+  const m = movies.slice()
   m.sort((a, b) => (+b[5]) - (+a[5]));
   displayMovies(m)
 })

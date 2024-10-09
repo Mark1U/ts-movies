@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+  <style>
+    body {
+      font-family: "Figtree", sans-serif;
+    }
+
+    #movieGrid {
+      margin-top: 40px;
+      display: grid;
+      gap: 20px;
+
+      grid-template-columns: repeat(3, minmax(250px, 1fr));
+      max-width: 1000px;
+    }
+
+    p,
+    h2 {
+      margin: 0px 10px;
+      padding: 0;
+    }
+
+    .orderBtnNav {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-items: center;
+      justify-content: center;
+    }
+
+    .orderBtnNav button {
+      display: flex;
+    }
+
+    #h1Bottom {
+      --tw-blur: blur(15px);
+      filter: var(--tw-blur);
+    }
+
+    #h1Top,
+    #h1Bottom {
+      font-weight: 900;
+      -webkit-text-fill-color: transparent;
+      -webkit-tap-highlight-color: transparent;
+      border-bottom-color: rgb(229, 231, 235);
+      border-bottom-style: solid border-bottom-width 0px;
+      border-left-color: rgb(229, 231, 235);
+      border-left-style: solid border-left-width 0px;
+      border-right-color: rgb(229, 231, 235);
+      border-right-style: solid border-right-width 0px;
+      border-top-color: rgb(229, 231, 235);
+      border-top-style: solid border-top-width 0px box-sizing border-box;
+      background-clip: text;
+      background-image: linear-gradient(90deg, #ff52d9 4%, color-mix(in oklch, #ff52d9, #ff5861) 22%, #7480ff 45%, color-mix(in oklch, #7480ff, #00cdb8) 67%, #00cdb8 100.2%)
+    }
+
+    .movCard {
+      width: 250px;
+      background-color: orange;
+      color: black;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .overlay-container {
+      /* position: relative;*/
+      width: fit-content;
+      display: inline-block;
+
+      height: 40px;
+    }
+
+    #h1Bottom,
+    #h1Top {
+      position: absolute;
+      top: 0;
+      left: 30%;
+    }
+  </style>
+
+  <script type="module" crossorigin src="/assets/index-BsKHWaFF.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Cz4zGhbH.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="overlay-container">
+      <h1 id="h1Bottom">🎬 Movies for you</h1>
+      <h1 id="h1Top">🎬 Movies for you</h1>
+    </div>
+    <h3>The best Movie Database 😮</h3>
+
+    <form>
+      <input type="search" id="inputSearch" placeholder="Film" value="">
+      <button id="searchBtn" type="submit">Search</button>
+    </form>
+    <div class="orderBtnNav">
+      <button id="yearUpBtn">Year <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-up">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M16 9l-4 -4" />
+          <path d="M8 9l4 -4" />
+        </svg>
+      </button>
+      <button id="yearDownBtn">Year
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-down">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M16 15l-4 4" />
+          <path d="M8 15l4 4" />
+        </svg>
+      </button>
+      <button id="ratingBtn">Rating <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-star">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+        </svg></button>
+
+      <select name="categories" id="categories" title="categories">
+        <option value="-" disabled>Filter by Categories</option>
+        <option value="" default>None</option>
+      </select>
+    </div>
+    <div id="movCount"></div>
+    <div id="movieGrid"></div>
+
+  </div>
+</body>
+
+</html>
