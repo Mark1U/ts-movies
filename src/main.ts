@@ -12,7 +12,7 @@ const ratingBtn = document.querySelector('#ratingBtn') as HTMLElement;
 
 const displayMovies = (_movies: Movies[], showCount = false) => {
   movieGrid.innerHTML = '';
-  movCount.textContent = showCount ? _movies.length + ' Movies Fount' : '';
+  movCount.textContent = showCount ? _movies.length + ' 🎬' : '';
 
   _movies.forEach((movie) => {
     movieGrid.innerHTML += `<div class='movCard'>
