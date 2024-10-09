@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+  <style>
+    #movieGrid {
+      margin-top: 40px;
+      display: grid;
+      gap: 20px;
+
+      grid-template-columns: repeat(3, minmax(250px, 1fr));
+      max-width: 1000px;
+    }
+
+    p,
+    h2 {
+      margin: 0px 10px;
+      padding: 0;
+    }
+
+    .orderBtnNav {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-items: center;
+      justify-content: center;
+    }
+
+    .orderBtnNav button {
+      display: flex;
+    }
+
+    .movCard {
+      width: 250px;
+      background-color: orange;
+      color: black;
+      border-radius: 10px;
+      padding: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="app">
+    <h1>Movies for you</h1>
+    <h3>The best Movie Database</h3>
+
+    <form>
+      <input type="search" id="inputSearch" placeholder="Film" value="">
+      <button id="searchBtn" type="submit">Search</button>
+    </form>
+    <div class="orderBtnNav">
+      <button id="yearUpBtn">Year <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-up">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M16 9l-4 -4" />
+          <path d="M8 9l4 -4" />
+        </svg>
+      </button>
+      <button id="yearDownBtn">Year
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-down">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M16 15l-4 4" />
+          <path d="M8 15l4 4" />
+        </svg>
+      </button>
+      <button id="ratingBtn">Rating <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-star">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+        </svg></button>
+    </div>
+    <div id="movieGrid"></div>
+
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
