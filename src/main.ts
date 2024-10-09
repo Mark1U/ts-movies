@@ -1,7 +1,8 @@
 import './style.css'
 
-import { movies, Movies } from './movies.ts'
+import { movies, Movies, getOrderedDistinctCategories } from './movies.ts'
 
+const movCount = document.querySelector('#movCount') as HTMLElement;
 const movieGrid = document.querySelector('#movieGrid') as HTMLElement;
 const inputSearch = document.querySelector('#inputSearch') as HTMLInputElement;
 const searchBtn = document.querySelector('#searchBtn') as HTMLElement;
@@ -9,8 +10,10 @@ const yearUpBtn = document.querySelector('#yearUpBtn') as HTMLElement;
 const yearDownBtn = document.querySelector('#yearDownBtn') as HTMLElement;
 const ratingBtn = document.querySelector('#ratingBtn') as HTMLElement;
 
-const displayMovies = (_movies: Movies[]) => {
+const displayMovies = (_movies: Movies[], showCount = false) => {
   movieGrid.innerHTML = '';
+  movCount.textContent = showCount ? _movies.length + ' Movies Fount' : '';
+
   _movies.forEach((movie) => {
     movieGrid.innerHTML += `<div class='movCard'>
     <h2>${movie[0]}</h2>
@@ -26,7 +29,7 @@ const displayMovies = (_movies: Movies[]) => {
 searchBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   console.log(inputSearch?.value);
-
+  categories.value = "";
   const searchValue = inputSearch?.value.toLowerCase();
   const m = movies.filter(x => (x[0].toLowerCase().includes(searchValue) ||
     x[1].toLowerCase().includes(searchValue) ||
@@ -37,11 +40,12 @@ searchBtn?.addEventListener('click', (e) => {
 
   console.log(m);
 
-  displayMovies(m);
+  displayMovies(m, true);
 })
 
 yearUpBtn?.addEventListener('click', (e) => {
   e.preventDefault();
+  categories.value = "";
   // ! Error: No overload matches this call
   const m = [].concat(movies as Movies[]);
   console.log(Array.isArray(m));
@@ -51,6 +55,7 @@ yearUpBtn?.addEventListener('click', (e) => {
 
 yearDownBtn?.addEventListener('click', (e) => {
   e.preventDefault();
+  categories.value = "";
   // ! Error: No overload matches this call
   const m = [].concat(movies as Movies[]);
   m.sort((a, b) => (+b[1]) - (+a[1]));
@@ -59,10 +64,41 @@ yearDownBtn?.addEventListener('click', (e) => {
 
 ratingBtn?.addEventListener('click', (e) => {
   e.preventDefault();
+  categories.value = "";
   // ! Error: No overload matches this call
   const m = [].concat(movies as Movies[]);
   m.sort((a, b) => (+b[5]) - (+a[5]));
   displayMovies(m)
 })
 
-displayMovies(movies)
+displayMovies(movies, false)
+
+
+// ### BONUS Filter by Category ###
+let genreList: string[] = [];
+movies.forEach(movie => {
+  genreList = genreList.concat(movie[4]);
+});
+
+const sortedCategories = getOrderedDistinctCategories(genreList);
+const categories = document.querySelector('#categories') as HTMLInputElement;
+
+sortedCategories.forEach((categorie) => {
+  const _option = document.createElement('option')
+  _option.value = categorie;
+  _option.textContent = categorie;
+  categories.appendChild(_option);
+})
+
+categories?.addEventListener('change', (e) => {
+  e.preventDefault();
+
+  if (categories.value) {
+    const m = movies.filter(x => (
+      x[4].join(' ').includes(categories.value)
+    ))
+    displayMovies(m, true)
+  } else {
+    displayMovies(movies, false)
+  }
+})

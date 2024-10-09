@@ -1,5 +1,15 @@
 export type Movies = [string, string, string, string, string[], string]
 
+
+export const getOrderedDistinctCategories = (categories: string[]): string[] => {
+    const categoryCountMap: { [key: string]: number } = {};
+    categories.forEach(category => {
+        categoryCountMap[category] = (categoryCountMap[category] || 0) + 1;
+    });
+    return Object.keys(categoryCountMap).sort((a, b) => categoryCountMap[b] - categoryCountMap[a]);
+}
+
+
 export const movies: Movies[] = [
     [
         'The Shawshank Redemption',

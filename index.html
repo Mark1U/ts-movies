@@ -4,9 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite + TS</title>
   <style>
+    body {
+      font-family: "Figtree", sans-serif;
+    }
+
     #movieGrid {
       margin-top: 40px;
       display: grid;
@@ -35,6 +42,28 @@
       display: flex;
     }
 
+    #h1Bottom {
+      --tw-blur: blur(15px);
+      filter: var(--tw-blur);
+    }
+
+    #h1Top,
+    #h1Bottom {
+      font-weight: 900;
+      -webkit-text-fill-color: transparent;
+      -webkit-tap-highlight-color: transparent;
+      border-bottom-color: rgb(229, 231, 235);
+      border-bottom-style: solid border-bottom-width 0px;
+      border-left-color: rgb(229, 231, 235);
+      border-left-style: solid border-left-width 0px;
+      border-right-color: rgb(229, 231, 235);
+      border-right-style: solid border-right-width 0px;
+      border-top-color: rgb(229, 231, 235);
+      border-top-style: solid border-top-width 0px box-sizing border-box;
+      background-clip: text;
+      background-image: linear-gradient(90deg, #ff52d9 4%, color-mix(in oklch, #ff52d9, #ff5861) 22%, #7480ff 45%, color-mix(in oklch, #7480ff, #00cdb8) 67%, #00cdb8 100.2%)
+    }
+
     .movCard {
       width: 250px;
       background-color: orange;
@@ -42,13 +71,31 @@
       border-radius: 10px;
       padding: 10px;
     }
+
+    .overlay-container {
+      /* position: relative;*/
+      width: fit-content;
+      display: inline-block;
+
+      height: 40px;
+    }
+
+    #h1Bottom,
+    #h1Top {
+      position: absolute;
+      top: 0;
+      left: 30%;
+    }
   </style>
 
 </head>
 
 <body>
   <div id="app">
-    <h1>Movies for you</h1>
+    <div class="overlay-container">
+      <h1 id="h1Bottom">Movies for you</h1>
+      <h1 id="h1Top">Movies for you</h1>
+    </div>
     <h3>The best Movie Database</h3>
 
     <form>
@@ -82,7 +129,13 @@
           <path
             d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
         </svg></button>
+
+      <select name="categories" id="categories" title="categories">
+        <option value="-" disabled>Filter by Categories</option>
+        <option value="" default>None</option>
+      </select>
     </div>
+    <div id="movCount"></div>
     <div id="movieGrid"></div>
 
   </div>
