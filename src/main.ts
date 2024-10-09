@@ -9,7 +9,7 @@ const yearUpBtn = document.querySelector('#yearUpBtn') as HTMLElement;
 const yearDownBtn = document.querySelector('#yearDownBtn') as HTMLElement;
 const ratingBtn = document.querySelector('#ratingBtn') as HTMLElement;
 
-const displayMovies = (_movies: Movies) => {
+const displayMovies = (_movies: Movies[]) => {
   movieGrid.innerHTML = '';
   _movies.forEach((movie) => {
     movieGrid.innerHTML += `<div class='movCard'>
@@ -42,7 +42,8 @@ searchBtn?.addEventListener('click', (e) => {
 
 yearUpBtn?.addEventListener('click', (e) => {
   e.preventDefault();
-  const m: Movies = [].concat(movies);
+  // ! Error: No overload matches this call
+  const m = [].concat(movies as Movies[]);
   console.log(Array.isArray(m));
   m.sort((a, b) => (+a[1]) - (+b[1]));
   displayMovies(m)
@@ -50,17 +51,18 @@ yearUpBtn?.addEventListener('click', (e) => {
 
 yearDownBtn?.addEventListener('click', (e) => {
   e.preventDefault();
-  const m: Movies = [].concat(movies);
-  m.sort((a, b) => (b[1]) - (a[1]));
+  // ! Error: No overload matches this call
+  const m = [].concat(movies as Movies[]);
+  m.sort((a, b) => (+b[1]) - (+a[1]));
   displayMovies(m)
 })
 
 ratingBtn?.addEventListener('click', (e) => {
   e.preventDefault();
-  const m: Movies = [].concat(movies);
-  m.sort((a, b) => (b[5]) - (a[5]));
+  // ! Error: No overload matches this call
+  const m = [].concat(movies as Movies[]);
+  m.sort((a, b) => (+b[5]) - (+a[5]));
   displayMovies(m)
 })
-
 
 displayMovies(movies)

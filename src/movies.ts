@@ -1,6 +1,6 @@
-export type Movies = [string, string, string, string, string[], string][]
+export type Movies = [string, string, string, string, string[], string]
 
-export const movies: Movies = [
+export const movies: Movies[] = [
     [
         'The Shawshank Redemption',
         '1994',
